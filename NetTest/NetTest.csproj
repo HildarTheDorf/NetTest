@@ -166,11 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NetTest Instructions.txt" />
+    <Content Include="NetTest_db\sitedb.txt" />
     <Content Include="NetTest_scripts\accInitialise.sql" />
-    <Content Include="sitedb.ldf">
-      <DependentUpon>sitedb.mdf</DependentUpon>
-    </Content>
-    <Content Include="sitedb.mdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Db\" />

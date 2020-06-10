@@ -1,6 +1,8 @@
 ﻿
 
-You will see that this NetTest is a Petty Cash Windows Forms application.
+https://github.com/ExploseIT/NetTest
+
+You will see that this NetTest is a Petty Cash Windows Forms .Net application.
 
 Here we will discover your ability to update an existing .Net/Sql Server application.
 
@@ -17,3 +19,9 @@ Screenshots of the application as it stands can be found in the NetTest_psd fold
 4 - On the transactions screen, what would you do to show a) Who made each transaction?, and b) What is the type of each transaction? Show your ability to perform this task.
 
 5 - At the moment anyone who can log into the app can add cash. What would you do to make it so only managers and directors can add cash? Show your ability to perform this task.
+
+6 - Can you show how you would add a user profile screen which is invoked from the Logged in user button?
+    This screen would show first name, last name, user name, and a list of roles the user has (Employee, Admin, Director, Manager), and a list of the date/times they have logged in.
+    And also include a button to go back to the main menu, as implemented in the other screens.
+    Show your ability to perform this task.
+

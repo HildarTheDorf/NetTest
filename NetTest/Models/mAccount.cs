@@ -28,8 +28,23 @@ namespace NetTest.Models
             }
             return ret;
         }
-    }
 
+        public Guid getAccountIdFromUsernamePwd(string username, string pwd)
+        {
+            Guid ret = Guid.Empty;
+            spGetAccountAsUniqueIdTableAdapter taId = new spGetAccountAsUniqueIdTableAdapter();
+            var dtId = taId.GetData(username, pwd);
+            if (dtId != null)
+            {
+                if (dtId.Count > 0)
+                {
+                    var drId = dtId[0];
+                    ret = drId.acaAccount;
+                }
+            }
+            return ret;
+        }
+    }
     class cAccount
     {
         public cAccount()

@@ -29,22 +29,28 @@ namespace NetTest.UserControls
             //p_mucs.m_ucLogin.Top = p_mucs.m_ucLogin.Top;
             p_mucs.m_ucLogin.Show();
         }
+
         private void liSubmit_Click(object sender, EventArgs e)
         {
-            spAccountLoginOutTableAdapter ta = new spAccountLoginOutTableAdapter();
-            sitedb.spAccountLoginOutDataTable dt = ta.GetData(LIusername.Text, LIpwd.Text, DateTime.Now, "Li");
-            if (dt != null)
+            Guid accId = new mAccount().getAccountIdFromUsernamePwd(LIusername.Text, LIpwd.Text);
+
+            if (accId != Guid.Empty)
             {
-                if (dt.Rows.Count > 0)
+                spAccountLoginOutTableAdapter ta = new spAccountLoginOutTableAdapter();
+                sitedb.spAccountLoginOutDataTable dt = ta.GetData(accId, DateTime.Now, "Li");
+                if (dt != null)
                 {
-                    sitedb.spAccountLoginOutRow dr = dt[0];
-                    if (dr.acaAccount != Guid.Empty)
+                    if (dt.Rows.Count > 0)
                     {
-                        Licontinue.Visible = true;
-                        LIstatus.Text = "Logged in";
-                        LIusername.Enabled = false;
-                        LIpwd.Enabled = false;
-                        LIsubmit.Enabled = false;
+                        sitedb.spAccountLoginOutRow dr = dt[0];
+                        if (dr.acaAccount != Guid.Empty)
+                        {
+                            Licontinue.Visible = true;
+                            LIstatus.Text = "Logged in";
+                            LIusername.Enabled = false;
+                            LIpwd.Enabled = false;
+                            LIsubmit.Enabled = false;
+                        }
                     }
                 }
             }

@@ -76,5 +76,10 @@ namespace NetTest.UserControls
             mUCs p_mucs = mUCs.s_mUCs;
             p_mucs.m_ucCashAdd.Display();
         }
+
+        private void LINLogout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

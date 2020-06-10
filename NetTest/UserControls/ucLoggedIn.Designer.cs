@@ -36,6 +36,7 @@
             this.LINbalance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LINuser = new System.Windows.Forms.Button();
+            this.LINLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -114,10 +115,22 @@
             this.LINuser.Text = "User";
             this.LINuser.UseVisualStyleBackColor = true;
             // 
+            // LINLogout
+            // 
+            this.LINLogout.Enabled = false;
+            this.LINLogout.Location = new System.Drawing.Point(332, 70);
+            this.LINLogout.Name = "LINLogout";
+            this.LINLogout.Size = new System.Drawing.Size(75, 23);
+            this.LINLogout.TabIndex = 13;
+            this.LINLogout.Text = "Logout";
+            this.LINLogout.UseVisualStyleBackColor = true;
+            this.LINLogout.Click += new System.EventHandler(this.LINLogout_Click);
+            // 
             // ucLoggedIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.LINLogout);
             this.Controls.Add(this.LINuser);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.LINbalance);
@@ -144,5 +157,6 @@
         private System.Windows.Forms.Label LINbalance;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button LINuser;
+        private System.Windows.Forms.Button LINLogout;
     }
 }

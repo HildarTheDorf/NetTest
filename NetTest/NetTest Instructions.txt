@@ -8,20 +8,33 @@ Here we will discover your ability to update an existing .Net/Sql Server applica
 
 Screenshots of the application as it stands can be found in the NetTest_psd folder.
 
+IMPORTANT - Please include the following steps with your solution and with each step, and complete each a) and b) section.
 
 1 - Demonstrate your ability to get this application working from this Github repository which was built with Visual Studio Community 2019 and Sql Server 2017 Express LocalDb.
      If you can get it working with another Sql Server environment then that's fine too.
+      a) I achieved this by ...
+      b) The difficulties I had to overcome were ...
 
-2 - It is required that the database for this application is pre-populated by running the accInitialise.sql script in the NetTest_scripts folder. Show your ability to perform this task.
+2 - It is required that the database for this application is pre-populated by running the accInitialise.sql script in the NetTest_scripts folder. 
+      a) I achieved this by ...
+      b) The difficulties I had to overcome were ...
 
-3 - If you have the app running, using the credentials in the accInitialise.sql script, you should be able to log into the app. Show your ability to perform this task.
+3 - If you have the app running, using the credentials in the accInitialise.sql script, you should be able to log into the app. 
+      a) I achieved this by ...
+      b) The difficulties I had to overcome were ...
 
-4 - On the transactions screen, what would you do to show a) Who made each transaction?, and b) What is the type of each transaction? Show your ability to perform this task.
+4 - On the transactions screen, what would you do to show a) Who made each transaction?, and b) What is the type of each transaction?
+      a) I achieved this by ...
+      b) The difficulties I had to overcome were ...
 
-5 - At the moment anyone who can log into the app can add cash. What would you do to make it so only managers and directors can add cash? Show your ability to perform this task.
+5 - At the moment anyone who can log into the app can add cash. What would you do to make it so only managers and directors can add cash?
+      a) I achieved this by ...
+      b) The difficulties I had to overcome were ...
 
 6 - Can you show how you would add a user profile screen which is invoked from the Logged in user button?
     This screen would show first name, last name, user name, and a list of roles the user has (Employee, Admin, Director, Manager), and a list of the date/times they have logged in.
-    And also include a button to go back to the main menu, as implemented in the other screens.
-    Show your ability to perform this task.
+      a) I achieved this by ...
+      b) The difficulties I had to overcome were ...
+
+    
 

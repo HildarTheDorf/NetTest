@@ -8,8 +8,11 @@ Here we will discover your ability to update an existing .Net/Sql Server applica
 
 Screenshots of the application as it stands can be found in the NetTest_psd folder.
 
+If there are sql problems and/or missing stored procedures, please look for and run accFixIssues.sql
+
 IMPORTANT - Please include the following steps with your solution and with each step, and complete each a) and b) section.
 
+ 
 1 - Demonstrate your ability to get this application working from this Github repository which was built with Visual Studio Community 2019 and Sql Server 2017 Express LocalDb.
      If you can get it working with another Sql Server environment then that's fine too.
       a) I achieved this by ...

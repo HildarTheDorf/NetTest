@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.butMainMenu = new System.Windows.Forms.Button();
             this.PCAadd = new System.Windows.Forms.Button();
             this.PCAamount = new System.Windows.Forms.TextBox();
+            this.pan_MessageBox = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label3
@@ -43,16 +43,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Petty Cash Add";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // butMainMenu
-            // 
-            this.butMainMenu.Location = new System.Drawing.Point(3, 139);
-            this.butMainMenu.Name = "butMainMenu";
-            this.butMainMenu.Size = new System.Drawing.Size(75, 23);
-            this.butMainMenu.TabIndex = 12;
-            this.butMainMenu.Text = "Main Menu";
-            this.butMainMenu.UseVisualStyleBackColor = true;
-            this.butMainMenu.Click += new System.EventHandler(this.butMainMenu_Click);
             // 
             // PCAadd
             // 
@@ -71,16 +61,24 @@
             this.PCAamount.Size = new System.Drawing.Size(71, 20);
             this.PCAamount.TabIndex = 13;
             // 
+            // pan_MessageBox
+            // 
+            this.pan_MessageBox.Location = new System.Drawing.Point(166, 120);
+            this.pan_MessageBox.Name = "pan_MessageBox";
+            this.pan_MessageBox.Size = new System.Drawing.Size(317, 181);
+            this.pan_MessageBox.TabIndex = 15;
+            // 
             // ucCashAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pan_MessageBox);
             this.Controls.Add(this.PCAadd);
             this.Controls.Add(this.PCAamount);
-            this.Controls.Add(this.butMainMenu);
             this.Controls.Add(this.label3);
             this.Name = "ucCashAdd";
-            this.Size = new System.Drawing.Size(428, 165);
+            this.Size = new System.Drawing.Size(677, 371);
+            this.Load += new System.EventHandler(this.doLoadClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,8 +87,8 @@
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button butMainMenu;
         private System.Windows.Forms.Button PCAadd;
         private System.Windows.Forms.TextBox PCAamount;
+        private System.Windows.Forms.Panel pan_MessageBox;
     }
 }

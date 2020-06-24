@@ -60,10 +60,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSets\sitedb.Designer.cs">
+    <Compile Include="DataSets\ds_account.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>sitedb.xsd</DependentUpon>
+      <DependentUpon>ds_account.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ds_cash.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_cash.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\mAccount.cs" />
     <Compile Include="Models\mCash.cs" />
@@ -82,6 +87,12 @@
     <Compile Include="UserControls\ucCashAdd.Designer.cs">
       <DependentUpon>ucCashAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucMessageBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucMessageBox.Designer.cs">
+      <DependentUpon>ucMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucTransactions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,11 +105,11 @@
     <Compile Include="UserControls\ucCashSpend.Designer.cs">
       <DependentUpon>ucCashSpend.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucLoggedIn.cs">
+    <Compile Include="UserControls\ucMain.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucLoggedIn.Designer.cs">
-      <DependentUpon>ucLoggedIn.cs</DependentUpon>
+    <Compile Include="UserControls\ucMain.Designer.cs">
+      <DependentUpon>ucMain.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucLogin.cs">
       <SubType>UserControl</SubType>
@@ -121,28 +132,42 @@
     <EmbeddedResource Include="UserControls\ucCashAdd.resx">
       <DependentUpon>ucCashAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucMessageBox.resx">
+      <DependentUpon>ucMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucTransactions.resx">
       <DependentUpon>ucTransactions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucCashSpend.resx">
       <DependentUpon>ucCashSpend.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucLoggedIn.resx">
-      <DependentUpon>ucLoggedIn.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\ucMain.resx">
+      <DependentUpon>ucMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucLogin.resx">
       <DependentUpon>ucLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataSets\sitedb.xsc">
-      <DependentUpon>sitedb.xsd</DependentUpon>
+    <None Include="DataSets\ds_account.xsc">
+      <DependentUpon>ds_account.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\sitedb.xsd">
+    <None Include="DataSets\ds_account.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>sitedb.Designer.cs</LastGenOutput>
+      <LastGenOutput>ds_account.Designer.cs</LastGenOutput>
     </None>
-    <None Include="DataSets\sitedb.xss">
-      <DependentUpon>sitedb.xsd</DependentUpon>
+    <None Include="DataSets\ds_account.xss">
+      <DependentUpon>ds_account.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ds_cash.xsc">
+      <DependentUpon>ds_cash.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ds_cash.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_cash.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ds_cash.xss">
+      <DependentUpon>ds_cash.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -166,11 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NetTest Instructions.txt" />
-    <Content Include="NetTest_db\sitedb.txt" />
+    <Content Include="NetTest_db\nettest_db.txt" />
     <Content Include="NetTest_scripts\accInitialise.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Db\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

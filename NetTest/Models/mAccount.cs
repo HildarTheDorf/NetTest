@@ -4,133 +4,108 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NetTest.DataSets;
-using NetTest.DataSets.sitedbTableAdapters;
+using NetTest.DataSets.ds_accountTableAdapters;
 
 namespace NetTest.Models
 {
     class mAccount
     {
-        public Guid? accountLoggedIn()
+
+
+
+        public cAccount getAccount()
         {
-            Guid? ret = null;
-            spGetAccountLoggedInTableAdapter ta = new spGetAccountLoggedInTableAdapter();
-            sitedb.spGetAccountLoggedInDataTable dt = ta.GetData();
+            cAccount ret = null;
+
+
+            spAccountReadTableAdapter ta = new spAccountReadTableAdapter();
+            var dt = ta.doRead();
             if (dt != null)
             {
                 if (dt.Rows.Count > 0)
                 {
-                    sitedb.spGetAccountLoggedInRow dr = dt[0];
-                    if (!dr.IsacaAccountNull())
-                    {
-                        ret = dr.acaAccount;
-                    }
+                    var dr = dt.FirstOrDefault();
+                    ret = getAccount(dr);
                 }
             }
+
+
             return ret;
         }
 
-        public Guid getAccountIdFromUsernamePwd(string username, string pwd)
+
+        public cAccount getAccount(ds_account.spAccountReadRow dr)
         {
-            Guid ret = Guid.Empty;
-            spGetAccountAsUniqueIdTableAdapter taId = new spGetAccountAsUniqueIdTableAdapter();
-            var dtId = taId.GetData(username, pwd);
-            if (dtId != null)
+            cAccount ret = new cAccount();
+
+            ret.accId = dr.accId;
+            ret.accFirstName = dr.accFirstName;
+            ret.accLastName = dr.accLastName;
+            ret.accUserName = dr.accUserName;
+            ret.accAudDT = dr.acaDT;
+            ret.accAutKey = dr.autKey;
+
+            return ret;
+        }
+
+
+        public cAccount doLogin(string username, string pwd)
+        {
+            cAccount ret = null;
+            spAccountReadTableAdapter ta = new spAccountReadTableAdapter();
+            var dt = ta.doLogin(username, pwd);
+            if (dt != null)
             {
-                if (dtId.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
-                    var drId = dtId[0];
-                    ret = drId.acaAccount;
+                    var dr = dt.FirstOrDefault();
+                    ret = getAccount(dr);
                 }
             }
+
+            return ret;
+        }
+
+        public cAccount doLogout(string username)
+        {
+            cAccount ret = null;
+            spAccountReadTableAdapter ta = new spAccountReadTableAdapter();
+            var dt = ta.doLogout(username);
+            if (dt != null)
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    var dr = dt.FirstOrDefault();
+                    ret = getAccount(dr);
+                }
+            }
+
             return ret;
         }
     }
     class cAccount
     {
+        public Guid accId;
+        public string accFirstName;
+        public string accLastName;
+        public string accUserName;
+        public DateTime accAudDT;
+        public string accAutKey;
+
         public cAccount()
         {
 
         }
 
-
-        public cAccount(sitedb.spAccountReadByIdDataTable dt)
-        {
-            sitedb.spAccountReadByIdRow dr = dt[0];
-            accId = dr.accId;
-            accFirstName = dr.accFirstName;
-            accLastName = dr.accLastName;
-            accUserName = dr.accUserName;
-            accAudKey = dr.actKey;
-            accAutKey = dr.autKey;
-            accDT = dr.acaDT;
-
-            accAccountTypeList = new List<cAccountType>();
-
-            foreach (sitedb.spAccountReadByIdRow drr in dt)
-            {
-                accAccountTypeList.Add(new cAccountType(drr));
-            }
-        }
-
-
-        public cAccount readById(Guid accId)
-        {
-            cAccount ret = null;
-
-            spAccountReadByIdTableAdapter ta = new spAccountReadByIdTableAdapter();
-            sitedb.spAccountReadByIdDataTable dt = ta.GetData(accId);
-            if (dt != null)
-            {
-                if (dt.Rows.Count > 0)
-                {
-                    ret = new cAccount(dt);
-                }
-            }
-
-
-            return ret;
-        }
-
-
-        public cAccount checkLoggedIn()
-        {
-            cAccount ret = null;
-
-            mAccount acc = new mAccount();
-            mUCs p_mucs = mUCs.s_mUCs;
-            Guid? mAccount = acc.accountLoggedIn();
-            if (mAccount == null)
-            {
-                p_mucs.HideAll();
-                p_mucs.m_ucLogin.Display();
-
-            }
-            else
-            {
-                ret = new cAccount().readById((Guid)mAccount);
-            }
-
-            return ret;
-        }
-
-        public Guid accId;
-        public string accFirstName;
-        public string accLastName;
-        public string accUserName;
-        public string accAudKey;
-        public string accAutKey;
-        public DateTime accDT;
-        public List<cAccountType> accAccountTypeList;
     }
 
-    class cAccountType
+    public enum AccountAuditType
     {
-        public cAccountType(sitedb.spAccountReadByIdRow dr)
-        {
-            actkey = dr.actKey.Trim();
-            actName = dr.actName;
-        }
-        public string actName;
-        public string actkey;
+        AAT_Default = 0,
+        AAT_Login,
+        AAT_Logout,
+        AAT_CashAdded,
+        AAT_CashSpent
     }
+
 }

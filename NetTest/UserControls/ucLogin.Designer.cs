@@ -125,8 +125,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LIusername);
             this.Name = "ucLogin";
-            this.Size = new System.Drawing.Size(430, 165);
-            this.Load += new System.EventHandler(this.ucLogin_Load);
+            this.Size = new System.Drawing.Size(677, 371);
+            this.Load += new System.EventHandler(this.doLoadClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,6 +1,6 @@
 ﻿namespace NetTest.UserControls
 {
-    partial class ucLoggedIn
+    partial class ucMain
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,11 +32,8 @@
             this.LINaddcash = new System.Windows.Forms.Button();
             this.LINspendcash = new System.Windows.Forms.Button();
             this.LINtransactions = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LINbalance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LINuser = new System.Windows.Forms.Button();
-            this.LINLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -79,24 +76,6 @@
             this.LINtransactions.UseVisualStyleBackColor = true;
             this.LINtransactions.Click += new System.EventHandler(this.LINtransactions_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 133);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Petty Cash Balance:";
-            // 
-            // LINbalance
-            // 
-            this.LINbalance.AutoSize = true;
-            this.LINbalance.Location = new System.Drawing.Point(140, 133);
-            this.LINbalance.Name = "LINbalance";
-            this.LINbalance.Size = new System.Drawing.Size(45, 13);
-            this.LINbalance.TabIndex = 10;
-            this.LINbalance.Text = "balance";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -115,33 +94,19 @@
             this.LINuser.Text = "User";
             this.LINuser.UseVisualStyleBackColor = true;
             // 
-            // LINLogout
-            // 
-            this.LINLogout.Enabled = false;
-            this.LINLogout.Location = new System.Drawing.Point(332, 70);
-            this.LINLogout.Name = "LINLogout";
-            this.LINLogout.Size = new System.Drawing.Size(75, 23);
-            this.LINLogout.TabIndex = 13;
-            this.LINLogout.Text = "Logout";
-            this.LINLogout.UseVisualStyleBackColor = true;
-            this.LINLogout.Click += new System.EventHandler(this.LINLogout_Click);
-            // 
-            // ucLoggedIn
+            // ucMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.LINLogout);
             this.Controls.Add(this.LINuser);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.LINbalance);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.LINtransactions);
             this.Controls.Add(this.LINspendcash);
             this.Controls.Add(this.LINaddcash);
             this.Controls.Add(this.label3);
-            this.Name = "ucLoggedIn";
-            this.Size = new System.Drawing.Size(433, 163);
-            this.Load += new System.EventHandler(this.ucLoggedIn_Load);
+            this.Name = "ucMain";
+            this.Size = new System.Drawing.Size(677, 371);
+            this.Load += new System.EventHandler(this.doLoadClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,10 +118,7 @@
         private System.Windows.Forms.Button LINaddcash;
         private System.Windows.Forms.Button LINspendcash;
         private System.Windows.Forms.Button LINtransactions;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label LINbalance;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button LINuser;
-        private System.Windows.Forms.Button LINLogout;
     }
 }

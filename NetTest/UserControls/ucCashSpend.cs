@@ -1,49 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NetTest.Models;
-using NetTest.DataSets;
-using NetTest.DataSets.sitedbTableAdapters;
 
 namespace NetTest.UserControls
 {
     public partial class ucCashSpend : UserControl
     {
         cAccount cAcc = null;
+        private mUCs m_UCs = null;
+        private mCash m_cash = null;
+        private string pcc_select = "PCC_Select";
 
-        decimal amount = 0;
-
-        public ucCashSpend()
+        public ucCashSpend(mUCs m_UCs)
         {
+            this.m_UCs = m_UCs;
+
             InitializeComponent();
         }
 
-        public void Display()
+
+        public void Init()
         {
-            mUCs p_mucs = mUCs.s_mUCs;
-            p_mucs.HideAll();
+            m_UCs.SetMessageBox(pan_MessageBox);
+            cAcc = new mAccount().getAccount();
+            if (cAcc == null)
+            {
+                m_UCs.ShowScreen_Login();
+            }
 
-            p_mucs.m_ucCashSpend.Left = p_mucs.m_ucLogin.Left;
-            p_mucs.m_ucCashSpend.Top = p_mucs.m_ucLogin.Top;
-            p_mucs.m_ucCashSpend.Show();
+            m_cash = new mCash();
 
-            cAcc = new cAccount().checkLoggedIn();
+            ButtonPCSpendEnable(false);
 
-            PCScombo.DataSource = spCashSpendCategoryTableAdapter.GetData();
+            var dict = new Dictionary<string, string>();
+            var lCat = m_cash.getCategoryList();
+            dict.Add(pcc_select, "Select Category");
+            for (int i = 0; i < lCat.Count; i++)
+            {
+                string key = lCat[i].pccKey;
+                string value = lCat[i].pccName;
+                if (String.Compare(key, CashCategory.PCC_CashAdd.ToString(), true) != 0)
+                {
+                    dict.Add(key, value);
+                }
+            }
+            PCScombo.DataSource = new BindingSource(dict, null);
+            PCScombo.DisplayMember = "Value";
+            PCScombo.ValueMember = "Key";
+
         }
 
 
-
-        private void ucCashSpend_Load(object sender, EventArgs e)
-        {
-
-        }
 
 
         private void PCSamount_TextChanged(object sender, EventArgs e)
@@ -63,32 +71,69 @@ namespace NetTest.UserControls
 
         private void PCSspend_Click(object sender, EventArgs e)
         {
-            Exception ex = null;
-            mUCs p_mucs = mUCs.s_mUCs;
-            spCashUpdateTableAdapter ta = new spCashUpdateTableAdapter();
-            DataRowView drv = (DataRowView) PCScombo.SelectedItem;
-            Guid catid = Guid.Parse(drv.Row["pccId"].ToString());
-            //Guid catid = Guid.Parse("1AE2822A-1EC5-4E29-9670-56101BED344C");
-            Decimal cash = 0.0M;
-            try
+            double balance = m_cash.getBalance();
+            KeyValuePair<string,string> sel = (KeyValuePair<string, string>)PCScombo.SelectedItem;
+
+            CashCategory catKey;
+            if(!Enum.TryParse(sel.Key, true, out catKey))
             {
-                cash = Convert.ToDecimal(PCSamount.Text);
+
             }
-            catch (Exception exc)
+            double cash;
+            if (!double.TryParse(PCSamount.Text, out cash))
             {
-                ex = exc;
+                //Cash amount not successfully parsed
             }
-            if (cAcc != null)
+            if (cash <= 0.0)
             {
-                sitedb.spCashUpdateDataTable dt = ta.GetData(DateTime.Now, cAcc.accId, catid, cash, "Cs");
+               m_UCs.MessageBoxShow("Please ensure a correct spending amount");
             }
-            p_mucs.m_ucLoggedIn.Display();
+            else if (cash > balance)
+            {
+                m_UCs.MessageBoxShow("Insufficient funds to complete transaction");
+            }
+            else
+            {
+                var r_cash = m_cash.doUpdate(cAcc.accUserName, catKey, cash, AccountAuditType.AAT_CashSpent);
+                if (r_cash == null)
+                {
+                    //Cash not successfully added
+                }
+
+                m_UCs.ShowScreen_Transactions();
+            }
         }
 
-        private void butMainMenu_Click(object sender, EventArgs e)
+
+        private void doLoadClick(object sender, EventArgs e)
         {
-            mUCs p_mucs = mUCs.s_mUCs;
-            p_mucs.m_ucLoggedIn.Display();
+            Init();
+        }
+
+        private void comboSelectOptionChanged(object sender, EventArgs e)
+        {
+            KeyValuePair<string, string> sel = (KeyValuePair<string, string>)PCScombo.SelectedItem;
+            string key = sel.Key;
+            if (String.Compare(key, pcc_select,true) == 0)
+            {
+                ButtonPCSpendEnable(false);
+            }
+            else
+            {
+                ButtonPCSpendEnable(true);
+            }
+        }
+
+        private void ButtonPCSpendEnable(bool enable)
+        {
+            if (enable)
+            {
+                PCSspend.Enabled = true;
+            }
+            else
+            {
+                PCSspend.Enabled = false;
+            }
         }
     }
 }

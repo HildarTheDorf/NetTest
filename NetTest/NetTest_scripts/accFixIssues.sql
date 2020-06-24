@@ -4,7 +4,7 @@
 
 */
 
-
+/*
 
 if exists (select * from sys.procedures where name = 'spGetAccountAsUniqueId')
 Drop PROCEDURE spGetAccountAsUniqueId
@@ -51,3 +51,4 @@ set  @accid =  (SELECT CAST(CAST(0 AS BINARY) AS UNIQUEIDENTIFIER))
 select @accid as acaAccount
 
 GO
+*/

@@ -28,18 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.PCScombo = new System.Windows.Forms.ComboBox();
-            this.spCashSpendCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.siteds = new NetTest.DataSets.sitedb();
             this.PCSamount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PCSspend = new System.Windows.Forms.Button();
-            this.spCashSpendCategoryTableAdapter = new NetTest.DataSets.sitedbTableAdapters.spCashSpendCategoryTableAdapter();
-            this.butMainMenu = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.spCashSpendCategoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.siteds)).BeginInit();
+            this.pan_MessageBox = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label3
@@ -54,30 +48,16 @@
             // 
             // PCScombo
             // 
-            this.PCScombo.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.spCashSpendCategoryBindingSource, "pccId", true));
-            this.PCScombo.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.spCashSpendCategoryBindingSource, "ppcName", true));
-            this.PCScombo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.spCashSpendCategoryBindingSource, "ppcName", true));
-            this.PCScombo.DataSource = this.spCashSpendCategoryBindingSource;
-            this.PCScombo.DisplayMember = "ppcName";
             this.PCScombo.FormattingEnabled = true;
             this.PCScombo.Location = new System.Drawing.Point(18, 57);
             this.PCScombo.Name = "PCScombo";
-            this.PCScombo.Size = new System.Drawing.Size(121, 21);
+            this.PCScombo.Size = new System.Drawing.Size(180, 21);
             this.PCScombo.TabIndex = 7;
-            // 
-            // spCashSpendCategoryBindingSource
-            // 
-            this.spCashSpendCategoryBindingSource.DataMember = "spCashSpendCategory";
-            this.spCashSpendCategoryBindingSource.DataSource = this.siteds;
-            // 
-            // siteds
-            // 
-            this.siteds.DataSetName = "siteds";
-            this.siteds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.PCScombo.SelectedIndexChanged += new System.EventHandler(this.comboSelectOptionChanged);
             // 
             // PCSamount
             // 
-            this.PCSamount.Location = new System.Drawing.Point(230, 57);
+            this.PCSamount.Location = new System.Drawing.Point(294, 57);
             this.PCSamount.Name = "PCSamount";
             this.PCSamount.Size = new System.Drawing.Size(71, 20);
             this.PCSamount.TabIndex = 8;
@@ -88,7 +68,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(179, 57);
+            this.label1.Location = new System.Drawing.Point(243, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 9;
@@ -96,7 +76,7 @@
             // 
             // PCSspend
             // 
-            this.PCSspend.Location = new System.Drawing.Point(350, 57);
+            this.PCSspend.Location = new System.Drawing.Point(414, 57);
             this.PCSspend.Name = "PCSspend";
             this.PCSspend.Size = new System.Drawing.Size(75, 23);
             this.PCSspend.TabIndex = 10;
@@ -104,35 +84,26 @@
             this.PCSspend.UseVisualStyleBackColor = true;
             this.PCSspend.Click += new System.EventHandler(this.PCSspend_Click);
             // 
-            // spCashSpendCategoryTableAdapter
+            // pan_MessageBox
             // 
-            this.spCashSpendCategoryTableAdapter.ClearBeforeFill = true;
-            // 
-            // butMainMenu
-            // 
-            this.butMainMenu.Location = new System.Drawing.Point(18, 131);
-            this.butMainMenu.Name = "butMainMenu";
-            this.butMainMenu.Size = new System.Drawing.Size(75, 23);
-            this.butMainMenu.TabIndex = 11;
-            this.butMainMenu.Text = "Main Menu";
-            this.butMainMenu.UseVisualStyleBackColor = true;
-            this.butMainMenu.Click += new System.EventHandler(this.butMainMenu_Click);
+            this.pan_MessageBox.Location = new System.Drawing.Point(157, 117);
+            this.pan_MessageBox.Name = "pan_MessageBox";
+            this.pan_MessageBox.Size = new System.Drawing.Size(317, 181);
+            this.pan_MessageBox.TabIndex = 11;
             // 
             // ucCashSpend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.butMainMenu);
+            this.Controls.Add(this.pan_MessageBox);
             this.Controls.Add(this.PCSspend);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PCSamount);
             this.Controls.Add(this.PCScombo);
             this.Controls.Add(this.label3);
             this.Name = "ucCashSpend";
-            this.Size = new System.Drawing.Size(428, 165);
-            this.Load += new System.EventHandler(this.ucCashSpend_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.spCashSpendCategoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.siteds)).EndInit();
+            this.Size = new System.Drawing.Size(677, 371);
+            this.Load += new System.EventHandler(this.doLoadClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,9 +116,6 @@
         private System.Windows.Forms.TextBox PCSamount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button PCSspend;
-        private System.Windows.Forms.BindingSource spCashSpendCategoryBindingSource;
-        private DataSets.sitedb siteds;
-        private DataSets.sitedbTableAdapters.spCashSpendCategoryTableAdapter spCashSpendCategoryTableAdapter;
-        private System.Windows.Forms.Button butMainMenu;
+        private System.Windows.Forms.Panel pan_MessageBox;
     }
 }

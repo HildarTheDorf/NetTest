@@ -8,58 +8,57 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NetTest.Models;
-using NetTest.DataSets;
-using NetTest.DataSets.sitedbTableAdapters;
 
 namespace NetTest.UserControls
 {
     public partial class ucCashAdd : UserControl
     {
         cAccount cAcc = null;
-        public ucCashAdd()
+        mUCs m_UCs = null;
+        mCash m_cash = null;
+
+        public ucCashAdd(mUCs m_UCs)
         {
+            this.m_UCs = m_UCs;
+
             InitializeComponent();
         }
 
-        public void Display()
+
+        public void Init()
         {
-            mUCs p_mucs = mUCs.s_mUCs;
-            p_mucs.HideAll();
-
-            p_mucs.m_ucCashAdd.Left = p_mucs.m_ucLogin.Left;
-            p_mucs.m_ucCashAdd.Top = p_mucs.m_ucLogin.Top;
-            p_mucs.m_ucCashAdd.Show();
-
-            cAcc = new cAccount().checkLoggedIn();
-
+            m_UCs.SetMessageBox(pan_MessageBox);
+            cAcc = new mAccount().getAccount();
+            if (cAcc == null)
+            {
+                m_UCs.ShowScreen_Login();
+            }
+            else
+            {
+                m_cash = new mCash();
+            }
         }
 
-        private void butMainMenu_Click(object sender, EventArgs e)
-        {
-            mUCs p_mucs = mUCs.s_mUCs;
-            p_mucs.m_ucLoggedIn.Display();
-        }
 
         private void PCSAdd_Click(object sender, EventArgs e)
         {
-            Exception ex = null;
-            mUCs p_mucs = mUCs.s_mUCs;
-            spCashUpdateTableAdapter ta = new spCashUpdateTableAdapter();
-            Guid catid = Guid.Empty;
-            Decimal cash = 0.0M;
-            try
+            double cash = 0.0;
+            if (!double.TryParse(PCAamount.Text, out cash))
             {
-                cash = Convert.ToDecimal(PCAamount.Text);
+                //Cash amount not successfully parsed
             }
-            catch (Exception exc)
+            var r_cash = m_cash.doUpdate(cAcc.accUserName, CashCategory.PCC_CashAdd, cash, AccountAuditType.AAT_CashSpent);
+            if (r_cash == null)
             {
-                ex = exc;
+                //Cash not successfully added
             }
-            if (cAcc != null)
-            {
-                sitedb.spCashUpdateDataTable dt = ta.GetData(DateTime.Now, cAcc.accId, catid, cash, "Ca");
-            }
-            p_mucs.m_ucLoggedIn.Display();
+
+            m_UCs.ShowScreen_Main();
+        }
+
+        private void doLoadClick(object sender, EventArgs e)
+        {
+            Init();
         }
     }
 }

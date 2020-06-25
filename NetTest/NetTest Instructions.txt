@@ -33,7 +33,6 @@ IMPORTANT - Please include the following steps with your solution and with each 
 
 6 - Can you show how you would add a user profile screen which is invoked from the Logged in user button?
     This screen would show first name, last name, user name, and a list of roles the user has (Employee, Admin, Director, Manager), and a list of the date/times they have logged in.
-    And also include a button to go back to the main menu, as implemented in the other screens.
       a) I achieved this by ...
       b) The difficulties I had to overcome were ...
 

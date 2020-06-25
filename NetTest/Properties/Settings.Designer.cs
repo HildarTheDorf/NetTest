@@ -26,8 +26,8 @@ namespace NetTest.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\Localdbss2017;Initial Catalog=nettest_db;Integrated Securit" +
-            "y=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\nettest_db;Initial Catalog=nettest_db;Integrated Security=T" +
+            "rue;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
         public string db {
             get {
                 return ((string)(this["db"]));

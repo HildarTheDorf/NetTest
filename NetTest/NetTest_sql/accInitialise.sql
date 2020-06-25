@@ -13,7 +13,7 @@ go
 if not exists (select * from master.dbo.sysdatabases where name='nettest_db')
 create database nettest_db ON (
 NAME='nettest_db', 
-  FILENAME='C:\Dev\NetTest\NetTest\NetTest\NetTest\NetTest_db\nettest_db.mdf' -- Please adjust this to suit your environment
+  FILENAME='C:\Dev\NetTest\NetTest\NetTest\NetTest\NetTest_sql\nettest_db.mdf' -- Please adjust this to suit your environment
   )
 go
 
@@ -31,6 +31,24 @@ begin transaction
 
 -----------------------------------------------------------------------------------------
 -- Schema
+
+
+if exists (select * from sys.tables where name='tblSettings')
+DROP TABLE [dbo].[tblSettings]
+GO
+
+CREATE TABLE [dbo].[tblSettings](
+	[setKey] [nvarchar](50) NOT NULL,
+	[setValue] [nvarchar](50) NOT NULL,
+	[setDescription] [nvarchar](200) NULL,
+ CONSTRAINT [PK_tblSettings] PRIMARY KEY CLUSTERED 
+(
+	[setKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
 
 if exists (select * from sys.tables where name='tblAccount')
 Drop TABLE [dbo].[tblAccount]
@@ -227,6 +245,9 @@ declare @accPwd nvarchar(50)
 declare @acaAccount uniqueidentifier
 declare @autKey varchar(20)
 declare @acaDT datetime
+declare @logintime int
+set @logintime = 5
+select @logintime = convert(int,s.setValue) from tblSettings s where s.setKey='LoginTime'
 set @acaDT = GETDATE()
 select top (1) @accuserName=acc.accUserName, @accPwd=acc.accPwd, @acaAccount=aa.acaAccount, @autkey=aut.autkey,@acaDT=aa.acaDT from tblAccount acc
  inner join tblAccountAuditIndex aa on acc.accId=aa.acaAccount
@@ -234,7 +255,7 @@ select top (1) @accuserName=acc.accUserName, @accPwd=acc.accPwd, @acaAccount=aa.
  order by aa.acaDT desc
 if @autkey = 'AAT_Login'
 begin
-if datediff(minute,  @acaDT, getDate()) >= 2
+if datediff(minute,  @acaDT, getDate()) >= @logintime
 exec spAccountLogout @accUserName
 else
 exec  spAccountLogin @accUserName, @accPwd
@@ -244,7 +265,8 @@ end
   left join tblAccountAudit aut on aa.acaAuditType=aut.autId
   where acc.accUserName=@accUserName and @autKey='AAT_Login'
   order by aa.acaDT desc 
-GO
+go
+
 
 
 if exists (select * from sys.procedures where name = 'spAccountAndRoleListByUserName')
@@ -493,8 +515,47 @@ if not exists (select * from tblCashCategory where pccId=@catId)
 select pcc.pccKey, pcc.pccName from tblCashCategory pcc where pccKey=@catKey
 go
 
+if exists (select * from sys.procedures where name = 'spSettingsUpdate')
+Drop PROCEDURE [dbo].[spSettingsUpdate]
+Go
+Create Procedure [dbo].[spSettingsUpdate]
+(
+	@key nvarchar(50)
+	,@value nvarchar(50)
+	,@description nvarchar(200)
+)
+as
+if not exists (select * from tblSettings where setKey=@key)
+INSERT INTO [dbo].[tblSettings]
+           ([setKey]
+           ,[setValue]
+           ,[setDescription])
+     VALUES
+           (
+		   @key
+           ,@value
+           ,@description
+		   )
+else
+begin
+if (len(''+@description)>0)
+update tblSettings
+	set setValue = @value,
+	setDescription = @description
+else
+update tblSettings
+	set setValue = @value
+end
+select * from tblSettings where setKey=@key
+go
+
+
 -----------------------------------------------------------------------------------------
 -- Data
+
+-- Set the default login time
+exec spSettingsUpdate 'LoginTime', '5', 'The login time (in minutes)'
+
 -- Add some account roles
 exec spAccountRoleCreate 'Role_Emp', 'Employee'
 exec spAccountRoleCreate 'Role_Adm', 'Admin'

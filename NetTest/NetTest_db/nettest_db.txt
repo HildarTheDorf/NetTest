@@ -1,2 +1,0 @@
-nettest_db.mdf can be stored in this folder if you wish
-

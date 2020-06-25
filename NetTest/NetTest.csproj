@@ -191,9 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NetTest Instructions.txt" />
-    <Content Include="NetTest_db\nettest_db.txt" />
-    <Content Include="NetTest_scripts\accFixIssues.sql" />
-    <Content Include="NetTest_scripts\accInitialise.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

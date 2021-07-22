@@ -36,6 +36,15 @@ namespace NetTest.Models
 
         public cAccount getAccount(ds_account.spAccountReadRow dr)
         {
+            cAccount ret = getAccountNoRoles(dr);
+
+            ret.Roles = getRoles(ret.accUserName);
+
+            return ret;
+        }
+
+        private static cAccount getAccountNoRoles(ds_account.spAccountReadRow dr)
+        {
             cAccount ret = new cAccount();
 
             ret.accId = dr.accId;
@@ -44,10 +53,13 @@ namespace NetTest.Models
             ret.accUserName = dr.accUserName;
             ret.accAudDT = dr.acaDT;
             ret.accAutKey = dr.autKey;
-
-            ret.Roles = getRoles(ret.accUserName);
-
             return ret;
+        }
+
+        public List<cAccount> getAudit(string accUserName)
+        {
+            var dt = new spAccountReadTableAdapter().doReadListByUserName(accUserName);
+            return dt.Select(getAccountNoRoles).ToList();
         }
 
         public List<cRole> getRoles(string accUserName)

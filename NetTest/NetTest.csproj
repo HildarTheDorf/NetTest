@@ -96,6 +96,12 @@
     <Compile Include="UserControls\ucMessageBox.Designer.cs">
       <DependentUpon>ucMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucProfile.Designer.cs">
+      <DependentUpon>ucProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucTransactions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucMessageBox.resx">
       <DependentUpon>ucMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucProfile.resx">
+      <DependentUpon>ucProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucTransactions.resx">
       <DependentUpon>ucTransactions.cs</DependentUpon>

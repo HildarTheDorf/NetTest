@@ -62,5 +62,10 @@ namespace NetTest.UserControls
         {
             Init();
         }
+
+        private void LINuser_Click(object sender, EventArgs e)
+        {
+            m_UCs.ShowScreen_Profile();
+        }
     }
 }

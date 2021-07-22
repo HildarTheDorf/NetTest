@@ -74,6 +74,16 @@ namespace NetTest.Models
             ShowBalance(true);
         }
 
+        internal void ShowScreen_Profile()
+        {
+            removeControls();
+            m_panel.Controls.Add(new ucProfile(this));
+
+            MainMenuButtonEnable(true);
+            LogoutButtonEnable(true);
+            ShowBalance(true);
+        }
+
         public void ShowScreen_CashAdd()
         {
             removeControls();

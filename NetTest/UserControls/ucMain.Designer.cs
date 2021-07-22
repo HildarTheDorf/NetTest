@@ -39,18 +39,20 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(121, 12);
+            this.label3.Location = new System.Drawing.Point(182, 18);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 25);
+            this.label3.Size = new System.Drawing.Size(278, 38);
             this.label3.TabIndex = 5;
             this.label3.Text = "Petty Cash Options";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LINaddcash
             // 
-            this.LINaddcash.Location = new System.Drawing.Point(73, 40);
+            this.LINaddcash.Location = new System.Drawing.Point(110, 62);
+            this.LINaddcash.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LINaddcash.Name = "LINaddcash";
-            this.LINaddcash.Size = new System.Drawing.Size(75, 23);
+            this.LINaddcash.Size = new System.Drawing.Size(112, 35);
             this.LINaddcash.TabIndex = 6;
             this.LINaddcash.Text = "Add cash";
             this.LINaddcash.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // 
             // LINspendcash
             // 
-            this.LINspendcash.Location = new System.Drawing.Point(73, 70);
+            this.LINspendcash.Location = new System.Drawing.Point(110, 108);
+            this.LINspendcash.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LINspendcash.Name = "LINspendcash";
-            this.LINspendcash.Size = new System.Drawing.Size(75, 23);
+            this.LINspendcash.Size = new System.Drawing.Size(112, 35);
             this.LINspendcash.TabIndex = 7;
             this.LINspendcash.Text = "Spend cash";
             this.LINspendcash.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@
             // 
             // LINtransactions
             // 
-            this.LINtransactions.Location = new System.Drawing.Point(52, 99);
+            this.LINtransactions.Location = new System.Drawing.Point(78, 152);
+            this.LINtransactions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LINtransactions.Name = "LINtransactions";
-            this.LINtransactions.Size = new System.Drawing.Size(115, 23);
+            this.LINtransactions.Size = new System.Drawing.Size(172, 35);
             this.LINtransactions.TabIndex = 8;
             this.LINtransactions.Text = "View Transactions";
             this.LINtransactions.UseVisualStyleBackColor = true;
@@ -79,24 +83,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(255, 40);
+            this.label2.Location = new System.Drawing.Point(382, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.Size = new System.Drawing.Size(118, 20);
             this.label2.TabIndex = 11;
             this.label2.Text = "Logged in user:";
             // 
             // LINuser
             // 
-            this.LINuser.Location = new System.Drawing.Point(332, 35);
+            this.LINuser.Location = new System.Drawing.Point(498, 54);
+            this.LINuser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LINuser.Name = "LINuser";
-            this.LINuser.Size = new System.Drawing.Size(75, 23);
+            this.LINuser.Size = new System.Drawing.Size(112, 35);
             this.LINuser.TabIndex = 12;
             this.LINuser.Text = "User";
             this.LINuser.UseVisualStyleBackColor = true;
+            this.LINuser.Click += new System.EventHandler(this.LINuser_Click);
             // 
             // ucMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LINuser);
             this.Controls.Add(this.label2);
@@ -104,8 +111,9 @@
             this.Controls.Add(this.LINspendcash);
             this.Controls.Add(this.LINaddcash);
             this.Controls.Add(this.label3);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ucMain";
-            this.Size = new System.Drawing.Size(677, 371);
+            this.Size = new System.Drawing.Size(1016, 571);
             this.Load += new System.EventHandler(this.doLoadClick);
             this.ResumeLayout(false);
             this.PerformLayout();

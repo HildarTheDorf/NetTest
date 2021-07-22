@@ -14,6 +14,9 @@ IMPORTANT - Please include the following steps with your solution and with each 
      If you can get it working with another Sql Server environment then that's fine too.
       a) I achieved this by forking the repository in github then cloning to my machine.
       b) The difficulties I had to overcome were that I did not have sql localdb or any other sql server installed locally. I set up an Azure SQL db and connected to that.
+      This was actually completed AFTER setting up the DB in Step 2
+      NB: The connection string password is purposefully NOT comitted to source control.
+
 
 2 - It is required that the database for this application is pre-populated by running the accInitialise.sql script in the NetTest_scripts folder. 
       a) I achieved this by connecting to the db server using visual studio and running the script.

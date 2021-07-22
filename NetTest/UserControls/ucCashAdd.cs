@@ -42,6 +42,11 @@ namespace NetTest.UserControls
 
         private void PCSAdd_Click(object sender, EventArgs e)
         {
+            if (!new mAccount().getAccount().Roles.Any(r => r.roleKey == RoleKeys.Manager || r.roleKey == RoleKeys.Director))
+            {
+                throw new ApplicationException("Insufficent Permissions");
+            }
+
             double cash = 0.0;
             if (!double.TryParse(PCAamount.Text, out cash))
             {

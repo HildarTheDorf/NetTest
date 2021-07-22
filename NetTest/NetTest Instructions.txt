@@ -33,8 +33,9 @@ IMPORTANT - Please include the following steps with your solution and with each 
       b) The difficulties I had to overcome were that the username is displayed. Should that be a firstname/lastname?
 
 5 - At the moment anyone who can log into the app can add cash. What would you do to make it so only managers and directors can add cash?
-      a) I achieved this by ...
-      b) The difficulties I had to overcome were ...
+      a) I achieved this by modifying the db access code to return a role list along with account data
+      b) The difficulties I had to overcome were that I was always being logged in as jkirkstone regardless of credentials.
+        I fixed this by modifying the [spAccountLogInOut] procedure.
 
 6 - Can you show how you would add a user profile screen which is invoked from the Logged in user button?
     This screen would show first name, last name, user name, and a list of roles the user has (Employee, Admin, Director, Manager), and a list of the date/times they have logged in.

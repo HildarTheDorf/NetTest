@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSets\ds_account.cs">
+      <DependentUpon>ds_account.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ds_account.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

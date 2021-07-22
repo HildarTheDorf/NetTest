@@ -156,6 +156,7 @@ declare @accPwdThis nvarchar(50)
 declare @accUserNameThis nvarchar(50)
 select top(1) @accUserNameThis=acc.accUserName, @accPwdThis=acc.accPwd, @acaId=aai.acaId, @accId=acc.accId, @autKey=autKey, @autId=autId from tblAccount acc
  left join tblAccountAuditIndex aai on acc.accId=aai.acaAccount left join tblAccountAudit aa on aai.acaAuditType=aa.autId
+ where acc.accUserName = @accUserName
  order by aai.acaDT desc
  if @accUserName=@accUserNameThis and len(''+@accUserNameThis)>0 and @autKey=@autKeyValue and (@accPwd=@accPwdThis or @autKeyValue <> 'AAT_Login')
  update tblAccountAuditIndex set acaDT=getdate() where acaId=@acaId

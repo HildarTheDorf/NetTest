@@ -38,6 +38,7 @@ namespace NetTest.UserControls
             {
                 mCash mCash = new mCash();
                 LINuser.Text = cAcc.accUserName;
+                LINaddcash.Visible = cAcc.Roles.Any(r => r.roleKey == RoleKeys.Manager || r.roleKey == RoleKeys.Director);
             }
 
         }

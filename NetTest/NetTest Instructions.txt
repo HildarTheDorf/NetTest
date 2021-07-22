@@ -12,12 +12,13 @@ IMPORTANT - Please include the following steps with your solution and with each 
 
 1 - Demonstrate your ability to get this application working from this Github repository which was built with Visual Studio Community 2019 and Sql Server 2017 Express LocalDb.
      If you can get it working with another Sql Server environment then that's fine too.
-      a) I achieved this by ...
-      b) The difficulties I had to overcome were ...
+      a) I achieved this by forking the repository in github then cloning to my machine.
+      b) The difficulties I had to overcome were that I did not have sql localdb or any other sql server installed locally. I set up an Azure SQL db and connected to that.
 
 2 - It is required that the database for this application is pre-populated by running the accInitialise.sql script in the NetTest_scripts folder. 
-      a) I achieved this by ...
-      b) The difficulties I had to overcome were ...
+      a) I achieved this by connecting to the db server using visual studio and running the script.
+      b) The difficulties I had to overcome were the folder is actually named NetTest_sql and is not included in the project/solution.
+        The script attempts to create the database directly which is not supported in azure sql.
 
 3 - If you have the app running, using the credentials in the accInitialise.sql script, you should be able to log into the app. 
       a) I achieved this by ...

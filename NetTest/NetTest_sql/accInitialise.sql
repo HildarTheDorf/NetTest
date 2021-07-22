@@ -1,31 +1,5 @@
-
-/*
-use master
-go
-
-if exists (select * from master.dbo.sysdatabases where name='nettest_db')
-drop database nettest_db
-go
-*/
-use master
-go
-
-if not exists (select * from master.dbo.sysdatabases where name='nettest_db')
-create database nettest_db ON (
-NAME='nettest_db', 
-  FILENAME='C:\Dev\NetTest\NetTest\NetTest\NetTest\NetTest_sql\nettest_db.mdf' -- Please adjust this to suit your environment
-  )
-go
-
-
-use nettest_db
-go
-declare @db_name nvarchar(100) 
-declare @physical_name nvarchar(200)
-set @db_name = (select db_name())
-set @physical_name=(select physical_name from sys.master_files where physical_name like '%'+@db_name+'.mdf%')
-print N'Database mdf:' + @physical_name
-go
+USE NetTest
+GO
 
 begin transaction
 
@@ -623,17 +597,5 @@ exec spCashReadList
 
 Go
 
-if exists (select * from master.dbo.sysdatabases where name='nettest_db')
-begin
 commit transaction
 print 'Successful'
-end
-else
-begin
-rollback transaction
-print 'Not successful - Rollback performed'
-end
-
-
-
-

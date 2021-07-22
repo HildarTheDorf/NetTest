@@ -276,12 +276,10 @@ select
 ,pcaDT
 ,pcaAmount
 ,pccKey
-,case when pccKey='AAT_CashSpent' then 'what was spent'
-when pccKey='AAT_CashAdded' then 'cash added'
-else 'unknown transaction' end as pccName
-,'who ' as accFirstName
-,'spent/added cash' as accLastName
-,'who spent/added cash' as accUserName
+,pccName
+,accFirstName
+,accLastName
+,accUserName
 ,pcaId
 from tblAccount acc
 inner join
